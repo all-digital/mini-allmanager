@@ -71,8 +71,6 @@ The above copyright notice and this permission notice shall be included in all c
             background-color:#ab47bc;           
         }
 
-
-      
       </style>
      
 
@@ -84,7 +82,12 @@ The above copyright notice and this permission notice shall be included in all c
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                
-                <img width="200px" src="{{asset('new-logo.png')}}">
+                @auth
+                    <a href="{{'home'}}"><img width="200px" style="cursor: pointer;" src="{{asset('new-logo.png')}}"></a> 
+                @endauth
+                @guest
+                    <img width="200px" src="{{asset('new-logo.png')}}">
+                @endguest
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -109,10 +112,9 @@ The above copyright notice and this permission notice shall be included in all c
                                 </li>
                             @endif
                         @else
-
                                
                                 {{-- <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">Action</button>
+                                    <button type="button" class="btn btn-primary"> {{ Auth::user()->name }}</button>
                                     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       <span class="sr-only">Toggle Dropdown</span>
                                     </button>
@@ -153,27 +155,25 @@ The above copyright notice and this permission notice shall be included in all c
         </main>
     </div>
 
-     <!--   Core JS Files   -->
+    {{-- assistive touch --}}
+    @auth
+        @include('layouts.assistive-touch')    
+    @endauth
 
+  <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
-  {{-- <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script> --}}
-  
- 
+   
   <!--  Plugin for Sweet Alert -->
   <script src="../assets/js/plugins/sweetalert2.js"></script>
-
-         {{-- chartjs --}}
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js" integrity="sha512-asxKqQghC1oBShyhiBwA+YgotaSYKxGP1rcSYTDrB0U6DxwlJjU59B67U8+5/++uFjcuVM8Hh5cokLjZlhm3Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc --> 
   <script src="../assets/js/material-dashboard.min.js" type="text/javascript"></script>
-
-
+  {{-- alpinejs  --}}
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-   
-  <script>
+
+  {{-- alpinejs os metodos nesse script são compartilhados globalmente na app --}}
+<script>
 
     document.addEventListener('alpine:init', () => {
         Alpine.store('alpine', {
@@ -190,93 +190,8 @@ The above copyright notice and this permission notice shall be included in all c
         })
     })
     
-
 </script>
-
-
-
-<script>
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132,1)',
-                    'rgba(54, 162, 235,1)',
-                    'rgba(255, 206, 86,1)',
-                    'rgba(45, 87, 44, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-</script>    
-
-
-<script>
-
-var ctx = document.getElementById('myChart2');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
-
-    
 
  
 </body>
-
 </html>

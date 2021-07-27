@@ -25,4 +25,12 @@ class HomeController extends Controller
     {
         return view('home');
     }
-}
+
+
+    public function userProfile()
+    {
+        return view('users.profile');
+    }
+
+
+}//end class
