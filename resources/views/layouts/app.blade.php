@@ -29,11 +29,12 @@ The above copyright notice and this permission notice shall be included in all c
 
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     {{-- css  template   --}}
+    <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <link href="../assets/css/material-dashboard.css" rel="stylesheet" />
         
       
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    {{-- <link rel="icon" type="image/png" href="../assets/img/favicon.png"> --}}
       
       <!--     Fonts and icons     -->
       <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -49,7 +50,9 @@ The above copyright notice and this permission notice shall be included in all c
       <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="http://code.ionicfra> --}}
 
-      
+      {{-- datatables --}}
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+        
 
       <style>
           #assistive-touch{
@@ -77,7 +80,7 @@ The above copyright notice and this permission notice shall be included in all c
 </head>
 
 
-<body>
+<body onload="init()">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -104,13 +107,13 @@ The above copyright notice and this permission notice shall be included in all c
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('newLogin') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
+                            {{-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif
+                            @endif --}}
                         @else
                                
                                 {{-- <div class="btn-group">
@@ -129,17 +132,17 @@ The above copyright notice and this permission notice shall be included in all c
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->company_fantasy }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="{{ url('/newLogin/logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{url('/newLogin/logout') }}" method="GET" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -169,12 +172,32 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="../assets/js/plugins/sweetalert2.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc --> 
   <script src="../assets/js/material-dashboard.min.js" type="text/javascript"></script>
+  {{-- datatables --}}
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
   {{-- alpinejs  --}}
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   {{-- alpinejs os metodos nesse script são compartilhados globalmente na app --}}
 <script>
 
+    function init(){
+        fetchApi()
+        updateDate()  
+          
+    }
+
+
+    
+   
+    $(document).ready( function () {
+        $('#table_id').DataTable({
+            "scrollX": true,                                
+            responsive: true,                        
+        });
+    });
+       
+        
+            
     document.addEventListener('alpine:init', () => {
         Alpine.store('alpine', {
             open:false,
@@ -189,6 +212,52 @@ The above copyright notice and this permission notice shall be included in all c
             }
         })
     })
+
+    function fetchApi()
+    {        
+        // load total lines
+            var login = @json(Cache::get('login'));
+            console.log(login)
+                    
+            fetch('/api/dashboard/total-lines?login='+login,{ 
+            method:'GET',    
+            headers:{"Content-type":"application/json"}
+            })            
+            .then(res=> res.json())
+            .then(res => {
+               console.log(res)
+               sumLine(res);
+           })
+           .catch(error =>{ console.log('error api ', error)})
+
+    }//end function
+
+                       
+    
+
+
+    function sumLine(data)
+    {
+            const resultado = data.data.map(i => i.total).reduce(function(acum, atual){
+            return acum + atual
+            })
+
+            document.getElementById('total-lines').innerHTML = resultado          
+    }
+
+
+    function updateDate()
+    {
+        date = new Date()
+
+        dateCurrent = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+
+        document.querySelector('.date-Current1').innerHTML = dateCurrent
+        document.querySelector('.date-Current2').innerHTML = dateCurrent
+        document.querySelector('.date-Current3').innerHTML = dateCurrent
+    }
+
+
     
 </script>
 

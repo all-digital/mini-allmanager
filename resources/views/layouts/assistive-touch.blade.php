@@ -34,7 +34,7 @@
           </li> --}}
 
           <li class="list-group-item d-flex justify-content-between">  
-            <a href = "mailto: abc@example.com" style="color:black;">Suporte </a> 
+            <a href = "mailto:support@allcomtelecom.com" style="color:black;">Suporte </a> 
             <i class="fa fa-headphones fa-2x"></i>
           </li>
 
@@ -42,7 +42,7 @@
                 onclick="event.preventDefault();
                 document.getElementById('form-logout').submit();">
                         
-                <form id="form-logout" action="{{ route('logout') }}" method="POST" class="d-none">
+                <form id="form-logout" action="{{url('/newLogin/logout') }}" method="GET" class="d-none">
                   @csrf         
                 </form>
                 Logout
@@ -51,11 +51,6 @@
         </ul>
   </div>
 
-  {{-- <a class="dropdown-item" href="{{ route('logout') }}"
-  onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-   {{ __('Logout') }}
-</a> --}}
 
 
 

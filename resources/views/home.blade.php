@@ -5,6 +5,19 @@
       <div class="content">
         <div class="container-fluid">      
 
+
+          {{-- imagem carousel --}}
+          <div class="row d-flex justify-content-center">
+            <div class="card col-md-10">
+              {{-- <div class="card-header card-header-primary d-flex justify-content-center">
+                <h4 class="card-title ">Imagem da semana</h4>                    
+              </div> --}}
+              <div class="card-body">
+                @include('carousel.carousel')
+              </div>              
+            </div>
+          </div>
+
           {{-- card  --}}
           <div class="row d-flex justify-content-center">
 
@@ -15,11 +28,11 @@
                       <i class="material-icons">sim_card</i>
                     </div>
                     <p class="card-category"><strong> Total de linhas </strong></p>
-                    <h3 class="card-title">$5553422,245</h3>
+                    <h3 class="card-title" id="total-lines"></h3>
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons">date_range</i> Last 24 Hours
+                      <i class="material-icons">date_range</i> <span class="date-Current1"></span>
                     </div>
                   </div>
                 </div>
@@ -32,11 +45,11 @@
                       <i class="material-icons">date_range</i>
                     </div>
                     <p class="card-category"><strong>Linhas a vencer</strong></p>
-                    <h3 class="card-title">$34,245</h3>
+                    <h3 class="card-title">0</h3>
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons">date_range</i> Last 24 Hours
+                      <i class="material-icons">date_range</i> <span class="date-Current2"></span>
                     </div>
                   </div>
                 </div>
@@ -49,11 +62,11 @@
                       <i class="material-icons">signal_cellular_no_sim</i>
                     </div>
                     <p class="card-category"><strong>Linhas vencidas</strong></p>
-                    <h3 class="card-title">75</h3>
+                    <h3 class="card-title">0</h3>
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons">date_range</i>Last 24 Hours
+                      <i class="material-icons">date_range</i> <span class="date-Current3"></span>
                     </div>
                   </div>
                 </div>
@@ -63,163 +76,69 @@
        
               {{-- card informativo --}}
          
-              <div class="row d-flex justify-content-center">
+              {{-- <div class="row d-flex justify-content-center">
                 <div class="col-md-8">
-
                   @include('cards.card-information')
-
-               </div>
-              </div> 
-
-              {{-- imagem carousel --}}
-              <div class="row d-flex justify-content-center">
-                <div class="card col-md-6">
-                  <div class="card-header card-header-primary d-flex justify-content-center">
-                    <h4 class="card-title ">Imagem da semana</h4>                    
-                  </div>
-
-                  <div class="card-body">
-
-                    @include('carousel.carousel')
-                  </div>
-
                 </div>
-              </div>
+              </div>  --}}
+
+              
 
 
           {{-- table --}}
 
-          <div class="row d-flex justify-content-center ">
+          <div class="row d-flex justify-content-center">
 
-            <div class="col-md-10">
+            <div class="col-md-8">
               <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Simple Table</h4>
-                  <p class="card-category"> Here is a subtitle for this table</p>
+                <div class="card-header card-header-primary d-flex justify-content-center">
+                  <h4 class="card-title ">Linhas </h4>
+                  {{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
+                  <div >
+                    <table class="table" id="table_id" role="grid">
                       <thead class=" text-primary">
-                        <tr><th>
-                          ID
-                        </th>
-                        <th>
-                          Name
-                        </th>
-                        <th>
-                          Country
-                        </th>
-                        <th>
-                          City
-                        </th>
-                        <th>
-                          Salary
-                        </th>
-                      </tr></thead>
-                      <tbody>
                         <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            Dakota Rice
-                          </td>
-                          <td>
-                            Niger
-                          </td>
-                          <td>
-                            Oud-Turnhout
-                          </td>
-                          <td class="text-primary">
-                            $36,738
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            2
-                          </td>
-                          <td>
-                            Minerva Hooper
-                          </td>
-                          <td>
-                            Curaçao
-                          </td>
-                          <td>
-                            Sinaai-Waas
-                          </td>
-                          <td class="text-primary">
-                            $23,789
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            3
-                          </td>
-                          <td>
-                            Sage Rodriguez
-                          </td>
-                          <td>
-                            Netherlands
-                          </td>
-                          <td>
-                            Baileux
-                          </td>
-                          <td class="text-primary">
-                            $56,142
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            4
-                          </td>
-                          <td>
-                            Philip Chaney
-                          </td>
-                          <td>
-                            Korea, South
-                          </td>
-                          <td>
-                            Overland Park
-                          </td>
-                          <td class="text-primary">
-                            $38,735
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            5
-                          </td>
-                          <td>
-                            Doris Greene
-                          </td>
-                          <td>
-                            Malawi
-                          </td>
-                          <td>
-                            Feldkirchen in Kärnten
-                          </td>
-                          <td class="text-primary">
-                            $63,542
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            6
-                          </td>
-                          <td>
-                            Mason Porter
-                          </td>
-                          <td>
-                            Chile
-                          </td>
-                          <td>
-                            Gloucester
-                          </td>
-                          <td class="text-primary">
-                            $78,615
-                          </td>
-                        </tr>
+                          <th>Ações</th>                         
+                          <th>Operadora</th>
+                          <th>Callerid</th>
+                          <th>Iccid</th>
+                          <th>Ultima Conexão</th>
+                          <th>ON/OFF</th>
+                          <th>Data Ativação</th>
+                          <th>Data Vencimento</th>
+                          <th>Franquia e Consumo</th>                                                         
+                        </tr>                         
+                      </thead>
+                                                                                                                                                                  
+                    <tbody>
+                      <tr>
+                        <td><button class="btn btn-sm btn-primary"><span class="material-icons">
+                          mode_edit_outline
+                          </span></button></td>
+                        <td>Porto</td>
+                        <td>002288483180</td>
+                        <td>895510801570084</td>
+                        <td>29/07/2021</td>
+                        <td>Ativo</td>
+                        <td>30/05/2021</td>
+                        <td>30/05/2022</td>
+                        <td>60%</td>                        
+                      </tr> 
+                      <tr>
+                        <td><button class="btn btn-sm btn-primary"><span class="material-icons">
+                          mode_edit_outline
+                          </span></button></td>
+                        <td>Porto</td>
+                        <td>002288483180</td>
+                        <td>895510801570084</td>
+                        <td>28/07/2021</td>
+                        <td>Ativo</td>
+                        <td>30/03/2021</td>
+                        <td>30/03/2022</td>
+                        <td>85%</td>                                     
+                           
                       </tbody>
                     </table>
                   </div>

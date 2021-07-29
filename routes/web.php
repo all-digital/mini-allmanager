@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +16,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//redirect welcome for newLogin
+Route::redirect('/', '/newLogin');
+Route::redirect('/', '/newLogin');
+
+// Route::get('/teste', 'AuthController@dashboard');   
+
+Route::get('/test', function () {
+    
+    $session = Cache::get('session');
+    // $user = Auth::user()->login;
+    //dd($session);
+
+    $teste = Auth::user()->login;  
+    dd($teste);
+        
 });
 
+//bloqueando essa rotas que foram geradas automaticamente pelo auth
+//Auth::routes(['register' => false, 'login'=>false]);
 Auth::routes();
 
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/home', 'HomeController@index')->name('home')->middleware('init');
 
 Route::get('/userProfile','HomeController@userProfile');
+
+
+Route::get('/newLogin', 'AuthController@showLogin')->name('newLogin'); 
+Route::post('/newLogin/valid', 'AuthController@login')->name('newLoginValid'); 
+Route::get('/newLogin/logout', 'AuthController@logout')->name('newLoginLogout'); 
+
+
