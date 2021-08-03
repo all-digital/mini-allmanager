@@ -22,24 +22,30 @@ use Illuminate\Support\Facades\Auth;
 
 //redirect welcome for newLogin
 Route::redirect('/', '/newLogin');
-Route::redirect('/', '/newLogin');
+Route::redirect('/login', '/newLogin');
+Route::redirect('/register', '/newLogin');
+
 
 // Route::get('/teste', 'AuthController@dashboard');   
 
-Route::get('/test', function () {
+Route::get('/session', function () {
     
     $session = Cache::get('session');
     // $user = Auth::user()->login;
     //dd($session);
-
     $teste = Auth::user()->login;  
-    dd($teste);
-        
+    dd($teste);        
 });
 
+
 //bloqueando essa rotas que foram geradas automaticamente pelo auth
-//Auth::routes(['register' => false, 'login'=>false]);
-Auth::routes();
+Auth::routes(['register' => false, 'login'=>false]);
+// Auth::routes();
+
+Route::get('/simcards/operator','SimCardController@index');
+
+
+
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('init');
 

@@ -49,5 +49,10 @@ class DashboardController extends Controller
         return response()->json(['success' => true, 'data' => $totalPins]);
 
     }//end methods
+
+
+    
+
+
     
 }//end class

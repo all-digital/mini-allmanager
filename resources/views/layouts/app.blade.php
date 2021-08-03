@@ -80,7 +80,7 @@ The above copyright notice and this permission notice shall be included in all c
 </head>
 
 
-<body onload="init()">
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -178,26 +178,8 @@ The above copyright notice and this permission notice shall be included in all c
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   {{-- alpinejs os metodos nesse script são compartilhados globalmente na app --}}
-<script>
+<script>   
 
-    function init(){
-        fetchApi()
-        updateDate()  
-          
-    }
-
-
-    
-   
-    $(document).ready( function () {
-        $('#table_id').DataTable({
-            "scrollX": true,                                
-            responsive: true,                        
-        });
-    });
-       
-        
-            
     document.addEventListener('alpine:init', () => {
         Alpine.store('alpine', {
             open:false,
@@ -212,55 +194,24 @@ The above copyright notice and this permission notice shall be included in all c
             }
         })
     })
+   
+</script>
+@stack('home-js')
+@stack('inner-js')
+ 
+</body>
+</html>
+       
+        
+            
 
-    function fetchApi()
-    {        
-        // load total lines
-            var login = @json(Cache::get('login'));
-            console.log(login)
-                    
-            fetch('/api/dashboard/total-lines?login='+login,{ 
-            method:'GET',    
-            headers:{"Content-type":"application/json"}
-            })            
-            .then(res=> res.json())
-            .then(res => {
-               console.log(res)
-               sumLine(res);
-           })
-           .catch(error =>{ console.log('error api ', error)})
-
-    }//end function
+   
 
                        
     
 
 
-    function sumLine(data)
-    {
-            const resultado = data.data.map(i => i.total).reduce(function(acum, atual){
-            return acum + atual
-            })
-
-            document.getElementById('total-lines').innerHTML = resultado          
-    }
-
-
-    function updateDate()
-    {
-        date = new Date()
-
-        dateCurrent = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-
-        document.querySelector('.date-Current1').innerHTML = dateCurrent
-        document.querySelector('.date-Current2').innerHTML = dateCurrent
-        document.querySelector('.date-Current3').innerHTML = dateCurrent
-    }
+    
 
 
     
-</script>
-
- 
-</body>
-</html>

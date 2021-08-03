@@ -26,8 +26,8 @@ class InitMiddleware
      */
     public function handle($request, Closure $next)
     {                
-        $login = Auth::user()->login;
-        Cache::put('login', $login, 60);
+        // $login = Auth::user()->login;
+        // Cache::put('login', $login, 60);
 
         return $next($request);
     }

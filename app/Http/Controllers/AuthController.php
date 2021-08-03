@@ -39,7 +39,8 @@ class AuthController extends Controller
 
         if(Auth::attempt($credential))
         {
-            return redirect()->route('home');
+             return redirect()->route('home');
+            // return view('home');
         }else{
             return redirect()->back()->withInput()->withErrors(['Os dados informados não conferem']);
         }

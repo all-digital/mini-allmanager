@@ -1,4 +1,5 @@
-
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8">
 
       <div class="card card-nav-tabs">
         <h4 class="card-header card-header-primary">Promoçoes Semanais</h4>
@@ -30,5 +31,9 @@
             
         </div>
       </div>
+
+    </div>
+  </div>
+
 
   

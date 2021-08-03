@@ -83,3 +83,8 @@
   </div>
 
 @endSection
+@push('inner-js')
+<script>
+  
+</script>
+@endpush  

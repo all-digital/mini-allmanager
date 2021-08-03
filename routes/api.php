@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/simcards/operator','SimCardController@simcardsAPi');
 
 Route::get('dashboard/total-lines', 'Api\DashboardController@totalLines');
