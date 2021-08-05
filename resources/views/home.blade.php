@@ -24,31 +24,32 @@
           {{-- card informativo --}}
          
             
-          {{-- table --}}
-        <div class="row d-flex justify-content-center">
+          
+        {{-- <div class="row d-flex justify-content-center">
           <div class="card col-sm-2 col-md-2">
-
             <div class="btn-group">
                 <button type="button" class="btn btn-primary"> Operadoras </button>
                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="sr-only">Toggle Dropdown</span>
                   </button>
-                  <div class="dropdown-menu render-operation">
-                  {{-- <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a> --}}
+                  <div class="dropdown-menu render-operation">                  
                   </div>
               </div>
-
             </div>
-        </div>                        
+        </div>   --}}
+
+          {{-- table --}}
           {{-- {{$simcards = true}} --}}
         @if (isset($simcards))
           <div class="row d-flex justify-content-center">
               @include('tables.table-main')            
-          </div>                    
+          </div>
+        @else
+
+        <div class="row d-flex justify-content-center"> 
+              @include('tables.table-main-empty') 
+          </div>         
+                                       
         @endif
 
 

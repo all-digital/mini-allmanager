@@ -22,13 +22,14 @@ The above copyright notice and this permission notice shall be included in all c
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Allcom') }}</title>
+
     <!-- Scripts  and Styles-->
 
     {{-- As dependencias do template esta dando conflito com app.js --}}
     {{-- <script src="{{ asset('js/app.js') }}" defer></script>     --}}
 
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     {{-- css  template   --}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">    
     <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <link href="../assets/css/material-dashboard.css" rel="stylesheet" />
         
@@ -43,13 +44,6 @@ The above copyright notice and this permission notice shall be included in all c
 
       {{-- assistive-touch  botão flutuante para auxiliar na navegação pela aplicação--}}
 
-
-      {{-- <link rel="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> --}}
-      {{-- <link rel="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> --}}
-      {{-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-      <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="http://code.ionicfra> --}}
-
       {{-- datatables --}}
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
         
@@ -57,16 +51,13 @@ The above copyright notice and this permission notice shall be included in all c
       <style>
           #assistive-touch{
               position: fixed;
-
-              /* background-color:#8e24aa; */
-              
+              /* background-color:#8e24aa; */              
               top: 155px;
               right:70px;
               width: 200px;
               /* opacity:0.8; */
               cursor:pointer;
               font-weight: 900;
-
           }
 
           #assistive-touch .list-group-item:hover{

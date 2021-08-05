@@ -90,20 +90,19 @@
 
     // function simcardsAPi()
     // {          
-    //       fetch('http://localhost:8082/api/mini-allmanager/simcards/operator?login=ciagps',{ 
+    //       fetch('http://localhost:8082/api/mini-allmanager/simcards/operator?login=34041035000190',{ 
     //       method:'POST',    
     //       headers:{"Content-type":"application/json"}
     //       })            
     //       .then(res=> res.json())
     //       .then(res => {
-    //          console.log(res)        
+    //          console.log("simcards allmanager => ",res)        
     //       })
-    //       .catch(error =>{ console.log('allmanager api => ', error)})
-
-          
-
-
+    //       .catch(error =>{ console.log('allmanager api error => ', error)})
+         
     // }//end function
+
+
 
 
     //total for cards of total

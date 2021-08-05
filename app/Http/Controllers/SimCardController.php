@@ -323,9 +323,14 @@ class SimCardController extends Controller
     }//end methods
 
 
+    
 
 
 
+
+
+
+    // não esta sendo usada..... 
     public function simcardsAPi(Request $request)
     {
         $operator = $this->parlacom->getOperator($request->carrier);

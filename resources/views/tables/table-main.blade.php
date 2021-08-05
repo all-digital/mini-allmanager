@@ -4,9 +4,25 @@
         <h4 class="card-title ">Linhas - {{$operator ?? "" }} </h4>
         {{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
       </div>
-      <div class="card-body">        
+      <div class="card-body">  
+
+        {{-- dropdown select operator --}}
+        <div class="row d-flex justify-content-start" >
+          <div class="col-1 col-md-3 col-sm-2">  
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary"> Operadoras </button>
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu render-operation">                  
+                  </div>
+              </div>
+            </div>
+        </div>  
+
+
         <div class="table-responsive">
-          <table class="table" role="grid" id="tabela"> {{-- id="table_id"  --}}
+          <table class="table" role="grid" id="tabela">
             <thead class=" text-primary">
               <tr>
                 <th><strong>Ações</strong></th>       
@@ -26,25 +42,35 @@
               @inject('helpers', 'App\Http\Controllers\Helpers\HelpersControllers')
               @forelse ($simcards as $i => $line)
                   <tr>    
-                    <td><button class="btn btn-sm btn-primary"><span class="material-icons">
-                      mode_edit_outline
-                      </span></button></td>
-                          <td>{{$line['callerid']}}</td>
-                          <td>{{ $line['iccid'] }}</td>
-                          <td>{{ $line['lastConn'] }}</td>
-                          <td>
-                              @if ($line['status'] == 'Ativo')
-                              Ativa
-                              @else
-                              Inativa
-                              @endif
-                          </td>
-                          <td>{{$line['createdAt']}}</td>
-                          <td>{{ $helpers->dataExpiration($line['createdAt']) }}</td>   
-                          <td>{{ $line['balance'] }} MB</td>                      
-                          <td>{{$line['consumption']}}%</td> 
-                  </tr> 
-              @empty
+                         <td>
+                          <div class="btn-group">                        
+                                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu">                                   
+                                    @include('simcards.modal.index', ['callerid' => $line['callerid'],'name'=>'renovar'])
+                                    @include('simcards.modal.index', ['callerid' => $line['callerid'],'name'=>'cancelar'])
+                                </div>
+                          </div>           
+                         </td>
+                            <td>{{$line['callerid']}}</td>
+                         <td>{{ $line['iccid'] }}</td>
+                         <td>{{ $line['lastConn'] }}</td>
+                         <td>
+                             @if ($line['status'] == 'Ativo')
+                             Ativa
+                             @else
+                             Inativa
+                             @endif
+                         </td>
+                         <td>{{$line['createdAt']}}</td>
+                         <td>{{ $helpers->dataExpiration($line['createdAt']) }}</td>   
+                         <td>{{ $line['balance'] }} MB</td>                      
+                         <td>{{$line['consumption']}}%</td> 
+                 </tr> 
+                 @include('simcards.modal.cards-actions-simcards',['callerid' => $line['callerid']]) 
+             @empty
+
                   
               @endforelse                                           
                  
@@ -55,6 +81,7 @@
     </div>
   </div>
 
+    
 @push('inner-js')    
  <script>
     // $(document).ready( function () {
@@ -63,9 +90,6 @@
     //         responsive: true,                        
     //     });
     // });
-
-    console.log('js table ok')
-
-   
+       
 </script>   
 @endpush

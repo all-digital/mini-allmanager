@@ -34,7 +34,7 @@
           </li> --}}
 
           <li class="list-group-item d-flex justify-content-between">  
-            <a href = "mailto:support@allcomtelecom.com" style="color:black;">Suporte </a> 
+            <a href = "mailto:support@allcomtelecom.com?subject=Support allcom&body=Support" style="color:black;">Suporte </a> 
             <i class="fa fa-headphones fa-2x"></i>
           </li>
 

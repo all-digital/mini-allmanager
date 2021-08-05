@@ -26,15 +26,20 @@ Route::redirect('/login', '/newLogin');
 Route::redirect('/register', '/newLogin');
 
 
-// Route::get('/teste', 'AuthController@dashboard');   
+Route::post('/mail-simcards', 'NotificationController@EmailSmartsim'); 
+
+Route::get('/email', function(){
+    return new \App\Mail\SendSimcards();
+});  
+
 
 Route::get('/session', function () {
     
-    $session = Cache::get('session');
-    // $user = Auth::user()->login;
-    //dd($session);
-    $teste = Auth::user()->login;  
-    dd($teste);        
+    // $session = Cache::get('session');
+    // // $user = Auth::user()->login;
+    // //dd($session);
+    // $teste = Auth::user()->login;  
+    dd('teste');        
 });
 
 
@@ -43,7 +48,6 @@ Auth::routes(['register' => false, 'login'=>false]);
 // Auth::routes();
 
 Route::get('/simcards/operator','SimCardController@index');
-
 
 
 
