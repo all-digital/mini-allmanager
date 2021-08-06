@@ -41,16 +41,34 @@
           {{-- table --}}
           {{-- {{$simcards = true}} --}}
         @if (isset($simcards))
+
+        {{-- msg de que email smartsim cancelar ou renovar foi enviado com sucesso --}}
+        @if (Session::has('success'))
+          <div class="alert alert-info d-flex justify-content-center" role="alert">
+            <strong><span class="text-white">{{ Session::get('success') }}</span></strong>
+          </div>         
+        @endif 
+          {{-- loader --}}
+          <div>
+             <div class="c-loader to-hide"> </div>
+          <div>
+
+            {{-- table --}}
           <div class="row d-flex justify-content-center">
               @include('tables.table-main')            
           </div>
-        @else
-
-        <div class="row d-flex justify-content-center"> 
-              @include('tables.table-main-empty') 
-          </div>         
-                                       
+        @else        
+            {{-- loader --}}
+          <div>
+              <div class="c-loader to-hide"> </div>
+          <div>
+            {{-- table empty --}} 
+          <div class="row d-flex justify-content-center"> 
+                @include('tables.table-main-empty') 
+          </div>
         @endif
+                                       
+        
 
 
 
@@ -93,7 +111,7 @@
             let operation =""
 
             data.data.forEach(ope => {
-              operation +=  `<a class="dropdown-item" href="/simcards/operator?carrier=${ope.carrier}&login=${login}">${ope.operadora}</a>`
+              operation +=  `<a class="dropdown-item" href="/simcards/operator?carrier=${ope.carrier}&login=${login}" @click="$store.alpine.loader()">${ope.operadora}</a>`
             });
             console.log(operation)
             document.querySelector('.render-operation').innerHTML = operation

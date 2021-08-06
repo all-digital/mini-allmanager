@@ -1,0 +1,29 @@
+.c-loader{
+    position:absolute;
+    animation:is-rotating 1s infinite;
+    border:35px solid #e5e5e5;
+    border-top-color: #C930C2;    
+    border-radius:50%;
+    height:300px;
+    width:300px;
+
+    z-index: 25;
+
+    left:40%;
+    right:49%;
+    /* left:50%;
+    right:50%; */
+    
+}
+
+
+@keyframes is-rotating{
+    to{
+        transform: rotate(1turn);
+    }
+}   
+
+.to-hide{
+    display:none;
+}
+

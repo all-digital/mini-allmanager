@@ -28,6 +28,9 @@ The above copyright notice and this permission notice shall be included in all c
     {{-- As dependencias do template esta dando conflito com app.js --}}
     {{-- <script src="{{ asset('js/app.js') }}" defer></script>     --}}
 
+    {{-- loader animante --}}
+    <link href="{{ asset('/css/animante.css') }}" rel="stylesheet" type="text/css" />
+
     {{-- css  template   --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">    
     <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}" />
@@ -182,6 +185,10 @@ The above copyright notice and this permission notice shall be included in all c
             },
             chanceName(value){
                 this.name = value
+            },
+            loader(){
+                var loader = document.querySelector(".c-loader")
+                loader.classList.toggle('to-hide')
             }
         })
     })

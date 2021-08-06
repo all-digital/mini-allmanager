@@ -7,7 +7,7 @@
       <div class="card-body">  
 
         {{-- dropdown select operator --}}
-        <div class="row d-flex justify-content-start" >
+        <div class="row d-flex justify-content-start" x-data >
           <div class="col-1 col-md-3 col-sm-2">  
             <div class="btn-group">
                 <button type="button" class="btn btn-primary"> Operadoras </button>
@@ -47,7 +47,7 @@
                                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       <span class="sr-only">Toggle Dropdown</span>
                                 </button>
-                                <div class="dropdown-menu">                                   
+                                <div class="dropdown-menu" x-data >                                   
                                     @include('simcards.modal.index', ['callerid' => $line['callerid'],'name'=>'renovar'])
                                     @include('simcards.modal.index', ['callerid' => $line['callerid'],'name'=>'cancelar'])
                                 </div>
@@ -70,9 +70,8 @@
                  </tr> 
                  @include('simcards.modal.cards-actions-simcards',['callerid' => $line['callerid']]) 
              @empty
-
                   
-              @endforelse                                           
+             @endforelse                                           
                  
             </tbody>  
           </table>

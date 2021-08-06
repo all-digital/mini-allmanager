@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Auth;
 
+//teste email
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendSimcards;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,13 +28,17 @@ use Illuminate\Support\Facades\Auth;
 Route::redirect('/', '/newLogin');
 Route::redirect('/login', '/newLogin');
 Route::redirect('/register', '/newLogin');
+Route::redirect('/simcards/home', '/home');
 
 
 Route::post('/mail-simcards', 'NotificationController@EmailSmartsim'); 
 
 Route::get('/email', function(){
-    return new \App\Mail\SendSimcards();
-});  
+    // return new \App\Mail\SendSimcards();
+
+
+    Mail::send(new SendSimcards());
+});
 
 
 Route::get('/session', function () {
