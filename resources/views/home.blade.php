@@ -42,37 +42,46 @@
           {{-- {{$simcards = true}} --}}
         @if (isset($simcards))
 
-        {{-- msg de que email smartsim cancelar ou renovar foi enviado com sucesso --}}
-        @if (Session::has('success'))
-          <div class="alert alert-info d-flex justify-content-center" role="alert">
-            <strong><span class="text-white">{{ Session::get('success') }}</span></strong>
-          </div>         
-        @endif 
-          {{-- loader --}}
-          <div>
-             <div class="c-loader to-hide"> </div>
-          <div>
+            {{-- msg email smartsim cancelar ou renovar foi enviado com sucesso --}}
+            @if (Session::has('successEmail'))
+                <div class="alert alert-info d-flex justify-content-center" role="alert">
+                  <strong><span class="text-white">{{ Session::get('successEmail') }}</span></strong>
+                </div>         
+            @endif
+            
+                {{-- msg  email smartsim, caso tenha dado erro --}}
+            @if (Session::has('errorEmail'))
+                <div class="alert alert-danger d-flex justify-content-center" role="alert">
+                  <strong><span class="text-white">{{ Session::get('errorEmail') }}</span></strong>
+                </div>         
+            @endif
 
-            {{-- table --}}
-          <div class="row d-flex justify-content-center">
-              @include('tables.table-main')            
-          </div>
-        @else        
-            {{-- loader --}}
-          <div>
-              <div class="c-loader to-hide"> </div>
-          <div>
-            {{-- table empty --}} 
-          <div class="row d-flex justify-content-center"> 
-                @include('tables.table-main-empty') 
-          </div>
-        @endif
-                                       
-        
+             
+            {{-- loader and modal --}}
+            <div class="modal-container-loading to-hide">
+              <div class="c-loading"> </div>
+            </div>
 
+              {{-- table --}}
+            <div class="row d-flex justify-content-center">
+                @include('tables.table-main')            
+            </div>
 
+        @else
 
+              {{-- loader and modal --}}            
+            <div class="modal-container-loading to-hide">
+              <div class="c-loading"> </div>
+            </div>
               
+
+            {{-- table empty --}} 
+            <div class="row d-flex justify-content-center"> 
+                  @include('tables.table-main-empty') 
+            </div>
+        @endif
+                                     
+                      
       </div>                       
     </div>
       
@@ -111,7 +120,7 @@
             let operation =""
 
             data.data.forEach(ope => {
-              operation +=  `<a class="dropdown-item" href="/simcards/operator?carrier=${ope.carrier}&login=${login}" @click="$store.alpine.loader()">${ope.operadora}</a>`
+              operation +=  `<a class="dropdown-item" href="/simcards/operator?carrier=${ope.carrier}&login=${login}" @click="$store.alpine.loading()">${ope.operadora}</a>`
             });
             console.log(operation)
             document.querySelector('.render-operation').innerHTML = operation

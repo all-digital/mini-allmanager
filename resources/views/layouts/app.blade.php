@@ -169,26 +169,26 @@ The above copyright notice and this permission notice shall be included in all c
   {{-- datatables --}}
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
   {{-- alpinejs  --}}
-  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  
+  <script src="{{ asset('assets/js/alpinejs@323.min.js') }}" defer></script>    
 
   {{-- alpinejs os metodos nesse script são compartilhados globalmente na app --}}
 <script>   
 
     document.addEventListener('alpine:init', () => {
         Alpine.store('alpine', {
-            open:false,
-            
+            open:false,            
             name:'',
+
             toggle(){
-                this.open = this.open ? false : true
-                console.log("testando ")
+                this.open = this.open ? false : true                
             },
             chanceName(value){
                 this.name = value
             },
-            loader(){
-                var loader = document.querySelector(".c-loader")
-                loader.classList.toggle('to-hide')
+            loading(){               
+                var loading = document.querySelector(".modal-container-loading")
+                loading.classList.toggle('to-hide')
             }
         })
     })

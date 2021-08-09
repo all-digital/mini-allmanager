@@ -26,7 +26,7 @@
             <thead class=" text-primary">
               <tr>
                 <th><strong>Ações</strong></th>       
-                <th><strong>Callerid</strong></th>                 
+                <th><strong>Numero</strong></th>                 
                 <th><strong>Iccid</strong></th>
                 <th><strong>Ultima Conexão</strong></th>
                 <th><strong>ON/OFF</strong></th>
@@ -48,8 +48,8 @@
                                       <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu" x-data >                                   
-                                    @include('simcards.modal.index', ['callerid' => $line['callerid'],'name'=>'renovar'])
-                                    @include('simcards.modal.index', ['callerid' => $line['callerid'],'name'=>'cancelar'])
+                                    @include('simcards.modal.index', ['callerid' => $line['callerid'],'name'=>'Renovacao'])
+                                    @include('simcards.modal.index', ['callerid' => $line['callerid'],'name'=>'Cancelamento'])
                                 </div>
                           </div>           
                          </td>

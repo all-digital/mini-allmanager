@@ -1,4 +1,4 @@
-<div id="smartsim-renovar{{$callerid}}" class="modal fade" role="dialog" aria-labelledby="smartsim" aria-hidden="true" x-data>
+<div id="smartsim-Renovacao{{$callerid}}" class="modal fade" role="dialog" aria-labelledby="smartsim" aria-hidden="true" x-data>
     <div class="modal-dialog" role="document">
     <div class="modal-content card">
         <div class="modal-header card-header card-header-success d-flex justify-content-center">
@@ -13,7 +13,7 @@
                 <input type="hidden" name="callerid" value="{{$callerid}}" class="d-none">
                 <input type="hidden" name="acao" value="renovar">
 
-                <button type="submit" class="btn btn-success" @click="$store.alpine.loader()">Renovar</button>
+                <button type="submit" class="btn btn-success" @click="$store.alpine.loading()">SIM</button>
             </form>
             
         </div>
@@ -22,7 +22,7 @@
 </div>
 
 
-<div id="smartsim-cancelar{{$callerid}}" class="modal fade" role="dialog" aria-labelledby="smartsim" aria-hidden="true" x-data>
+<div id="smartsim-Cancelamento{{$callerid}}" class="modal fade" role="dialog" aria-labelledby="smartsim" aria-hidden="true" x-data>
     <div class="modal-dialog" role="document">
     <div class="modal-content card">
         <div class="modal-header card-header card-header-danger d-flex justify-content-center">
@@ -38,7 +38,7 @@
                 <input type="hidden" name="callerid" value="{{$callerid}}" class="d-none">
                 <input type="hidden" name="acao" value="cancelar">
 
-                <button type="submit" class="btn btn-danger" @click="$store.alpine.loader()">Cancelar</button>
+                <button type="submit" class="btn btn-danger" @click="$store.alpine.loading()">SIM</button>
             </form>
             
             

@@ -1,16 +1,17 @@
-.c-loader{
-    position:absolute;
+.c-loading{
+    /* position:absolute; */
     animation:is-rotating 1s infinite;
-    border:35px solid #e5e5e5;
+    border:18px solid #e5e5e5;
     border-top-color: #C930C2;    
     border-radius:50%;
-    height:300px;
-    width:300px;
+    height:220px;
+    width:220px;
 
-    z-index: 25;
+    /* z-index: 25; */
 
-    left:40%;
-    right:49%;
+    /* left:40%;
+    right:49%; */
+    
     /* left:50%;
     right:50%; */
     
@@ -24,6 +25,23 @@
 }   
 
 .to-hide{
-    display:none;
+    display:none !important;
 }
 
+/* modal somente a parte da sombra*/
+
+.modal-container-loading{
+
+width: 100vw;
+height: 100vh;
+background-color: rgba(0, 0,0, .5);
+position: fixed;
+top: 0px;
+left:0px;
+z-index: 2000;
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
