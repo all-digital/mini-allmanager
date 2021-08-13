@@ -63,6 +63,8 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('init');
 
 Route::get('/userProfile','HomeController@userProfile');
 
+Route::get('/admin-user','HomeController@adminCreateUser');
+
 
 Route::get('/newLogin', 'AuthController@showLogin')->name('newLogin'); 
 Route::post('/newLogin/valid', 'AuthController@login')->name('newLoginValid'); 

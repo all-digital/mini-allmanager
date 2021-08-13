@@ -23,21 +23,7 @@
            
           {{-- card informativo --}}
          
-            
-          
-        {{-- <div class="row d-flex justify-content-center">
-          <div class="card col-sm-2 col-md-2">
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary"> Operadoras </button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu render-operation">                  
-                  </div>
-              </div>
-            </div>
-        </div>   --}}
-
+         
           {{-- table --}}
           {{-- {{$simcards = true}} --}}
         @if (isset($simcards))
@@ -93,8 +79,8 @@
     fetchApiOperation()                 
        
     });
-
-    var login = @json(auth()->user()->login);
+     
+    var login = @json(auth()->user()->login)    
                 console.log(login)
 
     function fetchApiOperation()
@@ -107,11 +93,11 @@
                 })            
                 .then(res=> res.json())
                 .then(res => {
-                console.log(res)
+                // console.log(res)
                 renderOperator(res)
                 sumLine(res);
             })
-            .catch(error =>{ console.log('error api ', error)})
+            .catch(error =>{ console.log('error api render operator ', error)})
 
     }//end function
 
@@ -121,8 +107,7 @@
 
             data.data.forEach(ope => {
               operation +=  `<a class="dropdown-item" href="/simcards/operator?carrier=${ope.carrier}&login=${login}" @click="$store.alpine.loading()">${ope.operadora}</a>`
-            });
-            console.log(operation)
+            });            
             document.querySelector('.render-operation').innerHTML = operation
     }
 

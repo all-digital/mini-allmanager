@@ -62,45 +62,43 @@
    $(document).ready( function () {
         fetchApi()
         updateDate() 
-        // simcardsAPi()           
+        simcardsAPi()           
        
     });
        
     // fetch api total
     function fetchApi()
-    {        
-            // load total lines
-          var login = @json(auth()->user()->login);
-          console.log(login)
-                        
+    {                    
+          var login = @json(auth()->user()->login)
+                                  
           fetch('/api/dashboard/total-lines?login='+login,{ 
           method:'GET',    
           headers:{"Content-type":"application/json"}
           })            
           .then(res=> res.json())
           .then(res => {
-          console.log(res)
-          renderOperationTotal(res)
+          // console.log(res)
+          renderOperationTotal(res);
           sumLine(res);
           })
-          .catch(error =>{ console.log('error api ', error)})
+          .catch(error =>{ console.log('error api total-lines ', error)})
 
     }//end function
 
 
-    // function simcardsAPi()
-    // {          
-    //       fetch('http://localhost:8082/api/mini-allmanager/simcards/operator?login=34041035000190',{ 
-    //       method:'POST',    
-    //       headers:{"Content-type":"application/json"}
-    //       })            
-    //       .then(res=> res.json())
-    //       .then(res => {
-    //          console.log("simcards allmanager => ",res)        
-    //       })
-    //       .catch(error =>{ console.log('allmanager api error => ', error)})
+    function simcardsAPi()
+    {          
+          fetch('http://localhost:8082/api/mini-allmanager/simcards/operator?login='+login,{ 
+          method:'GET',    
+          headers:{"Content-type":"application/json"}
+          })            
+          .then(res=> res.json())
+          .then(res => {
+             console.log("simcards allmanager => ",res)        
+          })
+          .catch(error =>{ console.log('allmanager api error => ', error)})
          
-    // }//end function
+    }//end function
 
 
 

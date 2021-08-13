@@ -83,12 +83,6 @@
     
 @push('inner-js')    
  <script>
-    // $(document).ready( function () {
-    //     $('#table_id').DataTable({
-    //         "scrollX": true,                                
-    //         responsive: true,                        
-    //     });
-    // });
-       
+          
 </script>   
 @endpush

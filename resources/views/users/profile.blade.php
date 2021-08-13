@@ -16,7 +16,7 @@
                   <div class="col-md-8">
                     <div class="form-group bmd-form-group">
                       {{-- <label class="bmd-label-floating">Company</label> --}}
-                      <input type="text" class="form-control" disabled="" value="{{Auth::user()->company_fantasy}}">
+                      <input type="text" class="form-control" disabled="" value="{{auth()->user()->company_fantasy}}">
                     </div>
                   </div>
                   {{-- <div class="col-md-3">
@@ -28,7 +28,7 @@
                   <div class="col-md-4">
                     <div class="form-group bmd-form-group">
                       {{-- <label class="bmd-label-floating">Company</label> --}}
-                      <input type="text" class="form-control" disabled="" value="{{Auth::user()->login}}">
+                      <input type="text" class="form-control" disabled="" value="{{auth()->user()->login}}">
                     </div>
                   </div>
                 </div>
@@ -36,19 +36,19 @@
                   <div class="col-md-4">
                     <div class="form-group bmd-form-group">
                       {{-- <label class="bmd-label-floating">Company</label> --}}
-                      <input type="text" class="form-control" disabled="" value="{{Auth::user()->email}}">
+                      <input type="text" class="form-control" disabled="" value="{{auth()->user()->email}}">
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group bmd-form-group">
                      {{-- <label class="bmd-label-floating">Company</label> --}}
-                     <input type="text" class="form-control" disabled="" value="{{Auth::user()->cpf_cnpj}}">
+                     <input type="text" class="form-control" disabled="" value="{{auth()->user()->cpf_cnpj}}">
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group bmd-form-group">
                      {{-- <label class="bmd-label-floating">Company</label> --}}
-                     <input type="text" class="form-control" disabled="" value="{{Auth::user()->phone}}">
+                     <input type="text" class="form-control" disabled="" value="{{auth()->user()->phone}}">
                     </div>
                   </div>
                 </div>

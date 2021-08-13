@@ -32,5 +32,10 @@ class HomeController extends Controller
         return view('users.profile');
     }
 
+    public function adminCreateUser()
+    {
+        return view('admin.create-user');
+    }
+
 
 }//end class

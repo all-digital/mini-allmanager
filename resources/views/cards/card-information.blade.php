@@ -27,7 +27,7 @@
               <p class="card-text">Rastreadores kit completo 200,00</p>          
             </div>
 
-            <a href="#0" class="btn btn-success mt-4">Não perca nossa promoçoes</a>
+            <a href="#" class="btn btn-success mt-4">Não perca nossa promoçoes</a>
             
         </div>
       </div>
