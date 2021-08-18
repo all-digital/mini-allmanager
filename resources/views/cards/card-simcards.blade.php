@@ -7,11 +7,11 @@
             <i class="material-icons">sim_card</i>
           </div>
           <p class="card-category"><strong> Total de linhas </strong></p>
-          <h3 class="card-title" id="total-lines"></h3>
+          <h3 class="card-title" id="total-lines">0</h3>
         </div>
         <div class="card-footer">
           <div class="stats">
-            <i class="material-icons">date_range</i> <span class="date-Current1"></span>
+            <i class="material-icons">date_range</i><span class="date-Current1"></span>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
             <i class="material-icons">date_range</i>
           </div>
           <p class="card-category"><strong>Linhas a vencer</strong></p>
-          <h3 class="card-title">0</h3>
+          <h3 class="card-title" id="due-lines">0</h3>
         </div>
         <div class="card-footer">
           <div class="stats">
@@ -41,7 +41,7 @@
             <i class="material-icons">signal_cellular_no_sim</i>
           </div>
           <p class="card-category"><strong>Linhas vencidas</strong></p>
-          <h3 class="card-title">0</h3>
+          <h3 class="card-title" id="expired-lines">0</h3>
         </div>
         <div class="card-footer">
           <div class="stats">
@@ -83,7 +83,7 @@
           })
           .catch(error =>{ console.log('error api total-lines ', error)})
 
-    }//end function
+    }//end function 
 
 
     function simcardsAPi()
@@ -94,7 +94,8 @@
           })            
           .then(res=> res.json())
           .then(res => {
-             console.log("simcards allmanager => ",res)        
+             console.log("simcards allmanager => ",res)  
+             InformationAboutLines(res)      
           })
           .catch(error =>{ console.log('allmanager api error => ', error)})
          
@@ -114,8 +115,7 @@
     }//end function 
 
 
-
-
+     
     //date for cards
     function updateDate()
     {
@@ -138,11 +138,106 @@
         info +=  `<li> <strong>${ope.operadora} </strong>  - <span>${ope.total}</span> </li>`
 
         });
-            console.log(info)
+            // console.log(info)
             document.querySelector('.info-simcards').innerHTML = info
     }//end function
 
 
+
+    function renderOperationDue(data){
+        let info =""
+
+        data.forEach(ope => {
+
+        info +=  `<li> <strong>${ope.carrier_name} </strong>  - <strong><span>${ope.callerid}</span></strong> - <span><strong>${ope.dueDate}</span></strong></li>`
+
+        });            
+            document.querySelector('.info-simcards-due').innerHTML = info
+    }//end function
+
+    function renderOperationExpired(data){
+        let info =""
+
+        data.forEach(ope => {
+
+        info +=  `<li> <strong>${ope.carrier_name} </strong>  - <strong><span>${ope.callerid}</span></strong> - <span><strong>${ope.dueDate}</span></strong></li>`
+
+        });            
+            document.querySelector('.info-simcards-expired').innerHTML = info
+    }//end function
+
+
+    function InformationAboutLines(data){
+
+      let ResulDueDate = []
+      let ResulExpiredLine = []
+      
+      let dateCurrent = new Date();
+      
+      data.forEach(element =>{          
+        //      
+        let elementDate = new Date(element.activated_at) 
+        let dueDate
+        
+        dueDate = elementDate.setFullYear(elementDate.getFullYear() + 1)
+        
+        dueDate = new Date(dueDate);                          
+         
+         
+        //se a data atual menos o vencimento for == -1 exemplo 8 - 9 = -1 significa q falta um mes para vencer
+        if(dateCurrent.getFullYear() === dueDate.getFullYear() && (dateCurrent.getMonth() - dueDate.getMonth()) == -1)
+        {
+          
+            let dateFormat = `${dueDate.getDate()}/${dueDate.getMonth() + 1}/${dueDate.getFullYear()}`
+            let objectDate = {'dueDate':dateFormat,'carrier_name':element.carrier_name, 'callerid':element.callerid}
+                          
+            ResulDueDate.push(objectDate)  
+
+        }
+        //se for o mesmo mes tmb entra
+        else if((dateCurrent.getMonth() - dueDate.getMonth()) == 0)
+        {
+
+            //se o dia atual for menos que o dia do mes do vencimento
+            if(dateCurrent.getDate() < dueDate.getDate())
+            {
+              let dateFormat = `${dueDate.getDate()}/${dueDate.getMonth() + 1}/${dueDate.getFullYear()}`
+              let objectDate = {'dueDate':dateFormat,'carrier_name':element.carrier_name, 'callerid':element.callerid}
+                          
+              ResulDueDate.push(objectDate)
+
+            }else{
+              //se o dia atual for maior do que o vencimento e por que venceu.
+              let dateFormat = `${dueDate.getDate()}/${dueDate.getMonth() + 1}/${dueDate.getFullYear()}`
+              let objectDate = {'dueDate':dateFormat,'carrier_name':element.carrier_name, 'callerid':element.callerid}
+              
+              ResulExpiredLine.push(objectDate)
+              
+            }
+           
+        }
+
+        //se a data atual menos o vencimento for 1 ou maior do q 1, significa que já venceu
+        else if(dateCurrent.getFullYear() >= dueDate.getFullYear() && (dateCurrent.getMonth() - dueDate.getMonth()) >= 1)
+        {
+            let dateFormat = `${dueDate.getDate()}/${dueDate.getMonth() + 1}/${dueDate.getFullYear()}`
+            let objectDate = {'dueDate':dateFormat,'carrier_name':element.carrier_name, 'callerid':element.callerid}
+            
+            ResulExpiredLine.push(objectDate)
+          
+        }
+         
+
+      })//end foreach
+
+
+      document.getElementById('due-lines').innerHTML = ResulDueDate.length
+      renderOperationDue(ResulDueDate)
+      
+      document.getElementById('expired-lines').innerHTML = ResulExpiredLine.length 
+      renderOperationExpired(ResulExpiredLine)
+      
+    }//end function 
 
 </script>  
 @endpush

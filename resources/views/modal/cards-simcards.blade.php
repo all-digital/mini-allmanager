@@ -27,7 +27,7 @@
         </div>
         <div class="modal-body card-body ">
 
-          <ul class="info-simcards-vencer">
+          <ul class="info-simcards-due">
 
           </ul>
             
@@ -46,7 +46,7 @@
         </div>
         <div class="modal-body card-body ">
 
-          <ul class="info-simcards-vencidos">
+          <ul class="info-simcards-expired">
 
           </ul>
             

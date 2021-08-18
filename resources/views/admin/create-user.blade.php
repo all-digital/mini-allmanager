@@ -2,6 +2,12 @@
 
 @section('content') 
 
+<style>
+#form-create-user input {
+    color:blueviolet;
+}
+</style>
+
  
 <div class="content">
     <div class="container-fluid">
@@ -26,7 +32,30 @@
               <p class="card-category"></p>
             </div>
             <div class="card-body">
-              <form id="form-create-user">
+
+            @if($errors->any())
+              <div class="alert alert-danger mt-2">
+                  @foreach ($errors->all() as $item)
+                      <p>{{$item}}</p>
+                  @endforeach
+              </div>
+            @endif
+
+            @if(session('success'))
+                <div class="alert alert-success d-flex justify-content-center">
+                    {{session('success')}}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger d-flex justify-content-center">
+                    {{session('error')}}
+                </div>
+            @endif
+
+
+              <form id="form-create-user" action="{{url('admin-user-create')}}" method="POST">
+                @csrf
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group bmd-form-group">
@@ -43,7 +72,7 @@
                   <div class="col-md-4">
                     <div class="form-group bmd-form-group">
                       {{-- <label class="bmd-label-floating">Last Name</label> --}}
-                      <input type="email" class="form-control" name="last_name" id="last_name" value="Ultimo Nome">
+                      <input type="text" class="form-control" name="last_name" id="last_name" value="Ultimo Nome">
                     </div>
                   </div>
                 </div>
@@ -108,7 +137,7 @@
                     <div class="col-md-4">
                        <div class="form-group bmd-form-group">
                          {{-- <label class="bmd-label-floating">Password</label> --}}
-                         <input type="email" class="form-control" name="password" id="password" value="Senha">
+                         <input type="text" class="form-control" name="password" id="password" value="Senha">
                        </div>
                     </div>              
                 </div>
@@ -123,7 +152,7 @@
         <div class="col-md-2">
           <div class="card card-profile">            
             <div class="card-body">              
-              <h4 class="card-title">Informe o login do cliente desejado, para que ocora a importação automatica dos seus dados</h4>
+              <h4 class="card-title">Importa cliente do Allmanager</h4>
                 <form class="form-group" id="form-TochargeUser">
                     <label class="bmd-label-floating">Informe o login do cliente</label>
                     <input type="text" class="form-control" name="loginImport" id="loginImport">

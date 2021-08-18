@@ -29,9 +29,19 @@
               <i class="fa fa-user-o fa-2x"></i>
             </li>
 
-          {{-- <li class="list-group-item d-flex justify-content-between"> Senhas 
-            <i class="fa fa-cog fa-2x"></i>
-          </li> --}}
+            @can('acess-admin')
+
+                <li class="list-group-item d-flex justify-content-between"
+                  onclick="event.preventDefault();
+                    document.getElementById('user-create-admin').submit();"> 
+
+                  <form id="user-create-admin" action="{{ url('admin-user') }}" method="GET" class="d-none">                         
+                  </form>  
+                  Criar Usuario         
+                  <i class="fa fa-cog fa-2x"></i>
+                </li>
+
+            @endcan
 
           <li class="list-group-item d-flex justify-content-between">  
             <a href = "mailto:support@allcomtelecom.com?subject=Support allcom&body=Support" style="color:black;">Suporte </a> 

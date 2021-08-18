@@ -57,11 +57,15 @@
                          <td>{{ $line['iccid'] }}</td>
                          <td>{{ $line['lastConn'] }}</td>
                          <td>
-                             @if ($line['status'] == 'Ativo')
-                             Ativa
-                             @else
-                             Inativa
-                             @endif
+                          @if ($line['online'] == 'Online' || $line['online'] == '1')
+                              <a  title="Online" class="d-flex justify-content-center" >
+                                  <img src="{{ asset('images/online-ativa.svg') }}" height="20px"/>
+                              </a>
+                          @else
+                              <a title="Offline" class="d-flex justify-content-center">
+                                  <img src="{{ asset('images/offline-bloqueada.svg') }}" height="20px"/>
+                              </a>
+                          @endif
                          </td>
                          <td>{{$line['createdAt']}}</td>
                          <td>{{ $helpers->dataExpiration($line['createdAt']) }}</td>   
