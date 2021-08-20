@@ -27,12 +27,11 @@
       <div class="row">
         <div class="col-md-10">
           <div class="card">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title">Cadastro de novos Usuarios</h4>
-              <p class="card-category"></p>
+            <div class="card-header card-header-primary d-flex justify-content-center">
+              <h4 class="card-title">Cadastro de novo Usuario</h4>         
             </div>
+          
             <div class="card-body">
-
             @if($errors->any())
               <div class="alert alert-danger mt-2">
                   @foreach ($errors->all() as $item)

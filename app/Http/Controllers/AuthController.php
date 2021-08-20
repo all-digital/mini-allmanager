@@ -72,18 +72,6 @@ class AuthController extends Controller
     }//end methods
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     ///////////////////////////////
     
     public function dashboard()

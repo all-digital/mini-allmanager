@@ -34,24 +34,39 @@ class HomeController extends Controller
     public function userProfile()
     {
         return view('users.profile');
-    }
+    }//end methods
+
+
+    public function adminListUsers(){
+
+        Gate::authorize('acess-admin');
+
+        $users = DB::table('users')
+        ->select('first_name','login','email','cpf_cnpj')
+        ->orderBy('first_name','asc')
+        ->paginate(6);  
+                
+        //dd($users);
+
+        return view('admin.users.list-users',['users'=>$users]);
+                
+
+    }//end methods
+
 
     public function adminFormCreateUser()
     {
 
         Gate::authorize('acess-admin');             
             
-        return view('admin.create-user');
+        return view('admin.users.create-user');
 
         
     }//end method
 
+
     public function adminCreateUser(Request $request)
-    {
-
-        // dd($request->all());
-
-        
+    {    
 
         try{
 

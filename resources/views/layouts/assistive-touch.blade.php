@@ -35,9 +35,9 @@
                   onclick="event.preventDefault();
                     document.getElementById('user-create-admin').submit();"> 
 
-                  <form id="user-create-admin" action="{{ url('admin-user') }}" method="GET" class="d-none">                         
+                  <form id="user-create-admin" action="{{ url('admin-list-users') }}" method="GET" class="d-none">                         
                   </form>  
-                  Criar Usuario         
+                  Usuarios         
                   <i class="fa fa-cog fa-2x"></i>
                 </li>
 
