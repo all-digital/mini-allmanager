@@ -62,8 +62,10 @@
    $(document).ready( function () {
         fetchApi()
         updateDate() 
-        simcardsAPi()           
-       
+        simcardsAPi()
+        
+        // let urlAllmanager = @json($urlAllmanager)
+        // console.log("=>>>>>> ", urlAllmanager)       
     });
        
     // fetch api total
